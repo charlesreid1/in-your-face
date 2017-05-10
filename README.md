@@ -2,6 +2,18 @@
 
 Neural networks for facial recognition using Keras and the Labeled Faces in the Wild (LFW) Database.
 
+Table of Contents:
+* [List of software used](#software)
+* [LFW dataset](#lfw)
+	* [Training and testing data splits](#training_testing)
+* [Running scripts](#running)
+* [Useful links](#links)
+* [Labeled Faces in the Wild](#lfw)
+* [Keras](#keras)
+
+
+
+<a name="software"></a>
 ## List of Software Used
 
 Python:
@@ -12,15 +24,19 @@ Python:
 * Pandas
 * Pillow (Python image library) 
 
-`pip3 install jupyter numpy scipy pandas pillow`
-
 Machine learning/neural networks:
 * Scikit-learn
 * Tensorflow
 * Keras
 
-`pip3 install sklearn tensorflow keras`
+```
+#!/bin/bash
 
+pip3 install jupyter numpy scipy pandas pillow
+pip3 install sklearn tensorflow keras
+```
+
+<a name="lfw"></a>
 ## LFW Data Set
 
 See [LFW README.txt](http://vis-www.cs.umass.edu/lfw/README.txt) for detailed information about the data set.
@@ -33,6 +49,7 @@ The LFW data set provided on the LFW website is provided in multiple formats:
 * Subset of images: only people with A names (smaller, good for exploring how to import/process)
 * Subset of images: only George W Bush (most images of single person, also good for exploring importing/processing)
 
+<a name="training_testing"></a>
 ### Training and Testing Data Splits
 
 From [LFW README.txt](http://vis-www.cs.umass.edu/lfw/README.txt):
@@ -61,7 +78,7 @@ file is needed.
 ```
 
 
-
+<a name="running"></a>
 ## Running Scripts
 
 The scripts are all contained in Jupyter notebooks. Spin up a Jupyter notebook server using the command:
@@ -70,8 +87,10 @@ The scripts are all contained in Jupyter notebooks. Spin up a Jupyter notebook s
 jupyter notebook
 ```
 
+<a name="links"></a>
 ## Useful Links
 
+<a name="lfw"></a>
 ### Labeled Faces in the Wild (LFW) 
 
 [Link to the LFW Face Database](http://vis-www.cs.umass.edu/lfw/)
@@ -80,6 +99,7 @@ jupyter notebook
 
 [LFW Book Chapter (Academic)](https://people.cs.umass.edu/~elm/papers/LFW_survey.pdf)
 
+<a name="keras"></a>
 ### Keras
 
 [Github user dribnet: run-lfw.py](https://github.com/dribnet/lfw_fuel/blob/master/example/run-lfw.py)

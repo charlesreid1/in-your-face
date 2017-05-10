@@ -152,5 +152,8 @@ jupyter notebook
 <a name="keras"></a>
 ### Keras
 
-[Github user dribnet: run-lfw.py](https://github.com/dribnet/lfw_fuel/blob/master/example/run-lfw.py)
+[charlesreid1/lfw_fuel run-lfw.py example](https://github.com/charlesreid1/lfw_fuel/blob/master/example/run-lfw.py) 
+contains a simple Keras convolutional neural network that illustrates how to connect the LFW dataset (in fuel format)
+to the Keras neural network, and how to assemble a simple convolutional neural network architecture.
+
 

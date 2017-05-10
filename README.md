@@ -17,23 +17,44 @@ Table of Contents:
 ## List of Software Used
 
 Python:
-* Python 3
-* Jupyter Notebook
-* Numpy
-* Scipy
-* Pandas
-* Pillow (Python image library) 
+* python 3
+* jupyter notebook
+* numpy
+* scipy
+* pandas
+* pillow (Python image library) 
 
 Machine learning/neural networks:
-* Scikit-learn
-* Tensorflow
-* Keras
+* scikit-learn
+* tensorflow
+* keras
+
+Data loading packages:
+* [fuel](https://github.com/mila-udem/fuel) - provides data wrappers for machine learning
+* [kerosene](https://github.com/dribnet/kerosene) - provides a way to give fuel data sets 
+	various splits, version numbers, etc.
+* [charlesreid1/lfw_fuel](https://github.com/charlesreid1/lfw_fuel) - fork of [dribnet/lfw_fuel](https://github.com/dribnet/lfw_fuel),
+	provides a way to load LFW data into Fuel format
 
 ```
 #!/bin/bash
 
+# py for sci
 pip3 install jupyter numpy scipy pandas pillow
+
+# learn you some machines
 pip3 install sklearn tensorflow keras
+
+# get you some data for your learn
+cd /tmp
+git clone https://github.com/mila-udem/fuel 
+cd fuel && python3 setup.py build && python3 setup.py install && cd ../
+
+git clone https://github.com/dribnet/kerosene 
+cd kerosene && python3 setup.py build && python3 setup.py install && cd ../
+
+git clone https://github.com/charlesreid1/lfw_fuel 
+cd lfw_fuel && python3 setup.py build && python3 setup.py install && cd ../
 ```
 
 <a name="lfw"></a>
@@ -51,6 +72,35 @@ The LFW data set provided on the LFW website is provided in multiple formats:
 
 <a name="training_testing"></a>
 ### Training and Testing Data Splits
+
+The training data and the test data are contained in two different text files:
+* pairsDevTest.txt
+* pairsDevTrain.txt
+
+Each file contains two sections, corresponding to positive matches and negative matches.
+
+The first section (positive matches) contains a single name and two numbers:
+
+```
+Alan_Greenspan	1	5
+```
+
+This indicates that the neural network is to be fed the 1st and 5th photograph
+of Alan Greenspan, and told that the target answer is "Yes," i.e., that these two 
+photographs are of the same person. 
+
+The second section (negative matches) contains two names and two numbers:
+
+```
+Rod_Stewart	3	Se_Hyuk_Joo	1
+```
+
+This indicates that the neural network is to be fed the 3rd photograph of Rod Stewart
+and the 1st photograh of Se Hyuk Joo and told that the target answer is "No," i.e.,
+that these two photographs are of different people.
+
+See the [lfw_fuel](https://github.com/charlesreid1/lfw_fuel) repository for a nice 
+Python wrapper 
 
 From [LFW README.txt](http://vis-www.cs.umass.edu/lfw/README.txt):
 

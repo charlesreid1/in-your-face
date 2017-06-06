@@ -20,7 +20,7 @@ def phoenix_model(  batch_size = 128,
     # 2 images x 3 channels = 6 input channels 
     input_shape = (6, input_width, input_height)
 
-    w = Sequential()
+    phoenix = Sequential()
 
     phoenix.add( Flatten() )
 

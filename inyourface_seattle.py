@@ -6,7 +6,7 @@ from keras.utils import np_utils
 
 # Convolutional neural network architecture:
 #     Convolution
-#     (Dropout)
+#     (No Dropout)
 #     Convolution
 #     Pool
 #     Dropout
@@ -30,15 +30,21 @@ def seattle_model(  batch_size = 128,
 
     seattle = Sequential()
 
-    # Convolutional input layer,
-    # specify number of feature maps,
-    # size of feature maps,
-    # image sizes are (6, 32, 32) - 6 color channels, 32 x 32 pixels
+    # Convolutional input layer:
+    # - Specify number of feature maps
+    # - Specify size of feature maps
+    # - Image sizes are known: (6, 32, 32)
+    # - That's 6 color channels, 32 x 32 pixels
+    # 
+    # - What is this "channels_first" option?
+    # 
     seattle.add( Conv2D(feature_maps, 
                         feature_maps_size, 
                         input_shape = input_shape,
                         data_format = "channels_first",
                         padding = 'valid') )
+    
+    ## Not clear if batch normalization needed...
     #seattle.add( BatchNormalization(axis=1, scale=False) )
     seattle.add( Activation('relu') )
 
@@ -48,17 +54,22 @@ def seattle_model(  batch_size = 128,
                         input_shape = input_shape,
                         data_format = "channels_first",
                         padding = 'valid') )
+    
     #seattle.add( BatchNormalization(axis=1, scale=False) )
     seattle.add( Activation('relu') )
 
-    # Max Pool layer with size 2×2.
-    seattle.add( MaxPooling2D(data_format="channels_first", pool_size=(2, 2)) )
+    # Max Pool layer with size 2 × 2.
+    seattle.add( MaxPooling2D(data_format="channels_first",
+                              pool_size=(2, 2)) )
+    
+    ## Alternative: use an Avg Pool layer
     #seattle.add( AveragePooling2D(pool_size=(2, 2)) )
 
     # Dropout set to 20%
     seattle.add( Dropout(0.2) )
 
-    # Flatten layer
+    # Flatten the space-specific nodes
+    # (What's the difference between Flatten and Dense?)
     seattle.add( Flatten() )
 
     # Fully connected layer with 128 units 
@@ -68,8 +79,8 @@ def seattle_model(  batch_size = 128,
     seattle.add( Dropout(0.50) )
 
     # Fully connected output layer,
-    # 2 units (yes/no)
-    seattle.add( Dense(2, activation='softmax', name='predictions') )
+    # 1 unit (yes/no)
+    seattle.add( Dense(1, activation='softmax', name='predictions') )
 
     return seattle
 

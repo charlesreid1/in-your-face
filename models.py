@@ -4,11 +4,7 @@ from keras.layers.convolutional import Conv2D, MaxPooling2D, AveragePooling2D
 from keras.constraints import maxnorm
 
 """
-
-
-
-
-
+Models
 """
 
 def seattle_model(  input_width = 32,
@@ -57,7 +53,7 @@ def seattle_model(  input_width = 32,
     # - 3 pixel square window
     modelA.add(Conv2D(feature_maps, 
                       feature_window_size,
-                      input_shape=(ds,ds,6),
+                      input_shape=(input_width,input_height,6),
                       padding='same',
                       data_format='channels_last',
                       activation='relu'))
@@ -100,9 +96,8 @@ def seattle_model(  input_width = 32,
     if(optimizer not in ['rmsprop','adam','adadelta']):
         optimizer = 'rmsprop'
 
-    model.compile(  loss='binary_crossentropy', 
+    modelA.compile(  loss='binary_crossentropy', 
                     metrics=['binary_accuracy'], 
                     optimizer='rmsprop')
                    
-
-
+    return modelA
